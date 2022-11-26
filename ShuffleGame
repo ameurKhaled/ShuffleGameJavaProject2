@@ -1,0 +1,81 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public  class ShuffleGame {
+    static int[] arrayToSuffle = {1,0,1 };
+   static Character answer;
+   static int pickAnswer;
+
+   static Character playAgain;
+
+
+    public static void main(String[] args) {
+
+
+        System.out.println("----------------------------------welcome to shuffle game-------------------------------");
+
+
+        System.out.println("guess where the 0 is?");
+
+        do {
+            // if the answer is not y/n keep asking the question (loop)
+
+            do {
+                System.out.println("are you ready to play? y/n");
+                Scanner sc = new Scanner(System.in);
+                answer = sc.next().charAt(0);
+            } while (!(answer.equals('y')) && !(answer.equals('n')));
+
+            //if y:
+            //        shuffle the game
+
+            if (answer.equals('y')) {
+
+                Random rand = new Random();
+
+                for (int i = 0; i < arrayToSuffle.length; i++) {
+                    int randomIndexToSuffle = rand.nextInt(arrayToSuffle.length);
+                    int tmp = arrayToSuffle[randomIndexToSuffle];
+                    arrayToSuffle[randomIndexToSuffle] = arrayToSuffle[i];
+                    arrayToSuffle[i] = tmp;
+                }
+            }
+                //        pick 1, 2, or 3!
+                //if the answer is not 1, 2, or 3 keep asking the question (loop)
+                do {
+                    System.out.println(" pick 1, 2, or 3!");
+
+                    Scanner sc1 = new Scanner(System.in);
+                    pickAnswer = sc1.nextInt();
+                }
+                while (pickAnswer != 1 && pickAnswer != 2 && pickAnswer != 3);
+
+                if (arrayToSuffle[pickAnswer - 1] == 0) {
+                    System.out.println("good guess!");
+
+                } else {
+                    System.out.println("sorry!!! wrong guess");
+
+                }
+                //do you want to try again? y/n
+                //if the answer is not y/n keep asking the question (loop)
+                do {
+                    System.out.println("do you want to try again? y/n");
+                    Scanner sc = new Scanner(System.in);
+                    playAgain = sc.next().charAt(0);
+                } while (!(playAgain.equals('y')) && !(playAgain.equals('n')));
+            }
+            while (playAgain.equals('y')) ;
+
+            if (playAgain.equals('n')){
+                System.out.println("see you next time!");
+                System.out.println("-----------------------------------------------------------------------------------------");
+            }
+
+
+
+
+        }
+
+
+}
